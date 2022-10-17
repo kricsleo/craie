@@ -32,18 +32,18 @@ function chain(...stylers: Styler[]) {
   return root;
 }
 
-function buildCraier(stylers: Styler[]) {
-  const craier: Record<string, Styler> = {};
+function buildCraie(stylers: Styler[]) {
+  const craie: Record<string, Styler> = {};
   stylers.forEach((styler) => {
-    craier[styler.alias] = chain(
+    craie[styler.alias] = chain(
       styler,
       ...stylers.filter((t) => t !== styler)
     );
   });
-  return craier;
+  return craie;
 }
 
-const craier = buildCraier(createStylers(styles));
+const craie = buildCraie(createStylers(styles));
 
 function createStylers(styleMap: StyleMap) {
   return Object.entries(styleMap).map(([alias, style]) =>
@@ -82,4 +82,4 @@ function expandRadius(styleMap: StyleMap) {
   }, {} as StyleMap);
 }
 
-export default craier;
+export default craie;
