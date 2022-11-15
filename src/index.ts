@@ -6,6 +6,18 @@ type Styler = {
   [k: string]: Styler;
 };
 
+export type Craie = {
+  (text: string): [string, string];
+  red: Craie
+  blue: Craie
+  bgRed: Craie
+  bgBlue: Craie
+  round: Craie
+  roundL: Craie
+  roundR: Craie
+  bold: Craie
+}
+
 type StyleMap = Record<string, string>;
 
 const styles = {
@@ -43,7 +55,7 @@ function buildCraie(stylers: Styler[]) {
   return craie;
 }
 
-const craie = buildCraie(createStylers(styles));
+const craie = buildCraie(createStylers(styles)) as unknown as Craie;
 
 function createStylers(styleMap: StyleMap) {
   return Object.entries(styleMap).map(([alias, style]) =>
