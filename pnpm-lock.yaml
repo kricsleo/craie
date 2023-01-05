@@ -9,6 +9,7 @@ importers:
       '@antfu/utils': ^0.5.2
       '@types/node': ^18.7.18
       bumpp: ^8.2.1
+      chalk: ^5.1.2
       eslint: ^8.23.1
       esno: ^0.16.3
       pnpm: ^7.12.0
@@ -17,6 +18,8 @@ importers:
       unbuild: ^0.8.11
       vite: ^3.1.2
       vitest: ^0.23.4
+    dependencies:
+      chalk: 5.1.2
     devDependencies:
       '@antfu/eslint-config': 0.27.0_irgkl5vooow2ydyo6aokmferha
       '@antfu/ni': 0.18.0
@@ -934,10 +937,9 @@ packages:
       supports-color: 7.2.0
     dev: true
 
-  /chalk/5.0.1:
-    resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
+  /chalk/5.1.2:
+    resolution: {integrity: sha512-E5CkT4jWURs1Vy5qGJye+XwCkNj7Od3Af7CP6SujMetSMkLs8Do2RWJK5yx1wamHV/op8Rz+9rltjaTQWDnEFQ==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: true
 
   /character-entities-legacy/1.1.4:
     resolution: {integrity: sha512-3Xnr+7ZFS1uxeiUDvV02wQ+QDbc55o97tIV5zHScSPJpcLm/r0DFPcoY3tYRp+VZukxuMeKgXYmsXQHO05zQeA==}
@@ -3411,7 +3413,7 @@ packages:
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@rollup/pluginutils': 4.2.1
-      chalk: 5.0.1
+      chalk: 5.1.2
       consola: 2.15.3
       defu: 6.1.0
       esbuild: 0.15.8

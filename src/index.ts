@@ -1,25 +1,53 @@
-type Styler = {
-  (text: string): [string, string];
-  style: string;
-  alias: string;
-} & {
-  [k: string]: Styler;
-};
+import { Pair, Output, Styler, ExpandColor, ExpandRound, LogType, InferStyle, InferLog } from './types'
 
-type StyleMap = Record<string, string>;
+export const modifier = {
+  bold: 'font-weight:bold;',
+  italic: 'font-style:italic;',
+}
+
+export const color = {
+  red: '#f87171',
+  blue: '#60a5fa',
+  yellow: '#facc15'
+}
+
+export const round = {
+  round: '999em'
+}
+
+export const logs: LogType[] = ['info', 'log', 'warn', 'error']
 
 const styles = {
-  bold: 'font-weight:bold;',
-  ...expandRadius({
-    round: '999em',
-  }),
-  ...expandColor({
-    red: '#D24735',
-    blue: '#003D74',
-  }),
+  // ...modifier,
+  ...expandColor(color),
+  ...expandRound(round),
 };
 
+type StyleMap = typeof modifier & ExpandColor<typeof color> & ExpandRound<typeof round>
+
+export type Craie = InferStyle<StyleMap> & InferLog<typeof logs>
+
+const craie: Craie = buildCraie(styles);
+
+export default craie;
+
+function buildCraie(styleMap: Pair) {
+  const stylers = Object.entries(styleMap).map(([alias, style]) =>
+    createStyler(alias, style)
+  )
+  const craie: any = {};
+  stylers.forEach((styler) => {
+    craie[styler.alias] = chain(
+      styler,
+      ...stylers.filter((t) => t !== styler)
+    );
+  });
+  logs.forEach(logType => craie[logType] = createLogger(logType))
+  return craie;
+}
+
 function chain(...stylers: Styler[]) {
+  console.log('chaining', stylers.length, stylers);
   if (stylers.length <= 1) {
     return stylers[0];
   }
@@ -32,27 +60,8 @@ function chain(...stylers: Styler[]) {
   return root;
 }
 
-function buildCraie(stylers: Styler[]) {
-  const craie: Record<string, Styler> = {};
-  stylers.forEach((styler) => {
-    craie[styler.alias] = chain(
-      styler,
-      ...stylers.filter((t) => t !== styler)
-    );
-  });
-  return craie;
-}
-
-const craie = buildCraie(createStylers(styles));
-
-function createStylers(styleMap: StyleMap) {
-  return Object.entries(styleMap).map(([alias, style]) =>
-    createStyler(alias, style)
-  );
-}
-
 function createStyler(alias: string, style: string): Styler {
-  const styler = (text: string): [string, string] => {
+  const styler = (text: string): Output => {
     return [`%c${text}`, styler.style];
   };
   styler.alias = alias;
@@ -60,16 +69,16 @@ function createStyler(alias: string, style: string): Styler {
   return styler as Styler;
 }
 
-function expandColor(styleMap: StyleMap) {
+function expandColor<T extends Pair>(styleMap: T): ExpandColor<T> {
   return Object.entries(styleMap).reduce((all, [alias, color]) => {
     all[alias] = `color:${color};`;
     const bgName = 'bg' + alias[0].toUpperCase() + alias.slice(1);
     all[bgName] = `background-color:${color};padding:0 0.5em;`;
     return all;
-  }, {} as StyleMap);
+  }, {} as any);
 }
 
-function expandRadius(styleMap: StyleMap) {
+function expandRound<T extends Pair>(styleMap: T): ExpandRound<T> {
   return Object.entries(styleMap).reduce((all, [alias, radius]) => {
     all[alias] = `border-radius:${radius};`;
     all[
@@ -79,7 +88,17 @@ function expandRadius(styleMap: StyleMap) {
       alias + 'R'
     ] = `border-top-right-radius:${radius};border-bottom-right-radius:${radius};`;
     return all;
-  }, {} as StyleMap);
+  }, {} as any);
 }
 
-export default craie;
+function createLogger(logType: LogType) {
+  return function(...outputs: Output[]) {
+    let text = ''
+    const styles: string[] = []
+    outputs.forEach(output => {
+      text += output[0]
+      styles.push(output[1])
+    })
+    console[logType](text, ...styles)
+  }
+}

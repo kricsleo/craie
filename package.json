@@ -59,5 +59,8 @@
     "unbuild": "^0.8.11",
     "vite": "^3.1.2",
     "vitest": "^0.23.4"
+  },
+  "dependencies": {
+    "chalk": "^5.1.2"
   }
 }
