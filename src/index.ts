@@ -1,4 +1,4 @@
-import { Pair, Output, Styler, ExpandColor, ExpandRound, LogType, InferStyle, InferLog } from './types'
+import { Pair, Output, ExpandColor, ExpandRound, LogType, InferStyle, InferLog } from './types'
 
 export const modifier = {
   bold: 'font-weight:bold;',
@@ -18,7 +18,7 @@ export const round = {
 export const logs: LogType[] = ['info', 'log', 'warn', 'error']
 
 const styles = {
-  // ...modifier,
+  ...modifier,
   ...expandColor(color),
   ...expandRound(round),
 };
@@ -31,42 +31,23 @@ const craie: Craie = buildCraie(styles);
 
 export default craie;
 
-function buildCraie(styleMap: Pair) {
-  const stylers = Object.entries(styleMap).map(([alias, style]) =>
-    createStyler(alias, style)
-  )
-  const craie: any = {};
-  stylers.forEach((styler) => {
-    craie[styler.alias] = chain(
-      styler,
-      ...stylers.filter((t) => t !== styler)
-    );
-  });
-  logs.forEach(logType => craie[logType] = createLogger(logType))
-  return craie;
-}
-
-function chain(...stylers: Styler[]) {
-  console.log('chaining', stylers.length, stylers);
-  if (stylers.length <= 1) {
-    return stylers[0];
+function buildCraie(styleMap: Pair): Craie {
+  let cachedStyle = ''
+  const craie: any = (message: string) => {
+    const style = cachedStyle
+    cachedStyle = ''
+    return [`%c${message}`, style]
   }
-  const [root, ...leaves] = stylers;
-  leaves.forEach((leaf) => {
-    const chainLeaf = createStyler(leaf.alias, root.style + leaf.style);
-    root[leaf.alias] = chainLeaf;
-    chain(chainLeaf, ...leaves.filter((t) => t !== leaf));
-  });
-  return root;
-}
-
-function createStyler(alias: string, style: string): Styler {
-  const styler = (text: string): Output => {
-    return [`%c${text}`, styler.style];
-  };
-  styler.alias = alias;
-  styler.style = style;
-  return styler as Styler;
+  Object.entries(styleMap).forEach(([alias, style]) => {
+    Object.defineProperty(craie, alias, {
+      get() {
+        cachedStyle += style
+        return craie
+      }
+    })
+  })
+  logs.forEach(logType => craie[logType] = createLogger(logType))
+  return craie as Craie;
 }
 
 function expandColor<T extends Pair>(styleMap: T): ExpandColor<T> {

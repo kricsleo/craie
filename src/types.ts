@@ -4,13 +4,10 @@ export type Output = [string, string]
 
 export type LogType = 'info' | 'log' | 'warn' | 'error'
 
-export interface Styler {
-  (message: string): Output
-  [k: string]: any
-}
-
 export type InferStyle<styleMap> = {
-  [Style in keyof styleMap]: Styler & InferStyle<Omit<styleMap, Style>>
+  [Style in keyof styleMap]: {
+    (message: string): Output
+  } & InferStyle<Omit<styleMap, Style>>
 }
 
 export type ExpandColor<
