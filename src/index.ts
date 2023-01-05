@@ -6,13 +6,37 @@ export const modifier = {
 }
 
 export const color = {
-  red: '#f87171',
+  black: '#000',
+  white: '#fff',
+  rose: '#fb7185',
+  pink: '#f472b6',
+  fuchsia: '#e879f9',
+  purple: '#c084fc',
+  violet: '#a78bfa',
+  indigo: '#818cf8',
   blue: '#60a5fa',
-  yellow: '#facc15'
+  sky: '#38bdf8',
+  cyan: '#22d3ee',
+  teal: '#2dd4bf',
+  emerald: '#34d399',
+  green: '#4ade80',
+  lime: '#a3e635',
+  yellow: '#facc15',
+  amber: '#fbbf24',
+  orange: '#fb923c',
+  red: '#f87171',
+  gray: '#9ca3af',
+  slate: '#94a3b8',
+  zinc: '#a1a1aa',
+  neutral: '#a3a3a3',
+  stone: '#a8a29e',
+  light: '#f6f6f6',
+  dark: '#222222',
 }
 
 export const round = {
-  round: '999em'
+  round: '999em',
+  roundS: '0.2em'
 }
 
 export const logs: LogType[] = ['info', 'log', 'warn', 'error']

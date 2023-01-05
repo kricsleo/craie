@@ -28,11 +28,11 @@ describe('craie', () => {
     `
     );
 
-    expect(craie.red.bold.roundR.bgBlue('text')).toMatchInlineSnapshot(
+    expect(craie.red.bold.roundSR.bgBlue('text')).toMatchInlineSnapshot(
       `
       [
         "%ctext",
-        "color:#f87171;font-weight:bold;border-top-right-radius:999em;border-bottom-right-radius:999em;background-color:#60a5fa;padding:0 0.5em;",
+        "color:#f87171;font-weight:bold;border-top-right-radius:0.2em;border-bottom-right-radius:0.2em;background-color:#60a5fa;padding:0 0.5em;",
       ]
     `
     );
