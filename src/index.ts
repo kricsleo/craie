@@ -1,11 +1,11 @@
 import { Pair, Output, ExpandColor, ExpandRound, LogType, InferStyle, InferLog } from './types'
 
-export const modifier = {
+const modifier = {
   bold: 'font-weight:bold;',
   italic: 'font-style:italic;',
 }
 
-export const color = {
+const color = {
   black: '#000',
   white: '#fff',
   rose: '#fb7185',
@@ -34,12 +34,12 @@ export const color = {
   dark: '#222222',
 }
 
-export const round = {
+const round = {
   round: '999em',
   roundS: '0.2em'
 }
 
-export const logs: LogType[] = ['info', 'log', 'warn', 'error']
+const logs: LogType[] = ['info', 'log', 'warn', 'error']
 
 const styles = {
   ...modifier,
@@ -49,7 +49,7 @@ const styles = {
 
 type StyleMap = typeof modifier & ExpandColor<typeof color> & ExpandRound<typeof round>
 
-export type Craie = InferStyle<StyleMap> & InferLog<typeof logs>
+type Craie = InferStyle<StyleMap> & InferLog<typeof logs>
 
 const craie: Craie = buildCraie(styles);
 
