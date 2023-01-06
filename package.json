@@ -23,6 +23,7 @@
   },
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
+  "browser": "./dist/index.global.js",
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
@@ -36,8 +37,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
-    "dev": "unbuild --stub",
+    "build": "NODE_ENV=production rollup -c",
+    "dev": "NODE_ENV=develop rollup -c",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
     "release": "bumpp && npm publish",
@@ -48,19 +49,15 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.27.0",
     "@antfu/ni": "^0.18.0",
-    "@antfu/utils": "^0.5.2",
-    "@types/node": "^18.7.18",
     "bumpp": "^8.2.1",
     "eslint": "^8.23.1",
     "esno": "^0.16.3",
     "pnpm": "^7.12.0",
-    "rimraf": "^3.0.2",
     "typescript": "^4.8.3",
-    "unbuild": "^0.8.11",
-    "vite": "^3.1.2",
-    "vitest": "^0.23.4"
-  },
-  "dependencies": {
-    "chalk": "^5.1.2"
+    "vitest": "^0.23.4",
+    "@rollup/plugin-commonjs": "^22.0.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-typescript2": "^0.32.1"
   }
 }
