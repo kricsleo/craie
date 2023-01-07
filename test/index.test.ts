@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import craie from '../src';
+import {craie} from '../src';
 
 describe('craie', () => {
   test('style', () => {

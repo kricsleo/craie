@@ -51,9 +51,7 @@ type StyleMap = typeof modifier & ExpandColor<typeof color> & ExpandRound<typeof
 
 type Craie = InferStyle<StyleMap> & InferLog<typeof logs>
 
-const craie: Craie = buildCraie(styles);
-
-export default craie;
+export const craie: Craie = buildCraie(styles);
 
 function buildCraie(styleMap: Pair): Craie {
   let cachedStyle = ''
