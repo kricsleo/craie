@@ -6,7 +6,7 @@ export default {
   output: [
     {
       file: `dist/index.global.js`,
-      format: 'iife',
+      format: 'umd',
       name: 'craie',
     },
     {
