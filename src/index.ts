@@ -35,8 +35,8 @@ const color = {
 }
 
 const round = {
-  round: '999em',
-  roundS: '0.2em'
+  round: '0.2em',
+  roundFull: '999em'
 }
 
 const logs: LogType[] = ['info', 'log', 'warn', 'error']
