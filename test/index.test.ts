@@ -23,12 +23,12 @@ describe('craie', () => {
       `
       [
         "%ctext",
-        "color:#f87171;font-weight:bold;border-radius:999em;",
+        "color:#f87171;font-weight:bold;border-radius:0.2em;",
       ]
     `
     );
 
-    expect(craie.red.bold.roundSR.bgBlue('text')).toMatchInlineSnapshot(
+    expect(craie.red.bold.roundR.bgBlue('text')).toMatchInlineSnapshot(
       `
       [
         "%ctext",
