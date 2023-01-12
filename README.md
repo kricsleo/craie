@@ -3,7 +3,7 @@
 [![NPM version](https://img.shields.io/npm/v/craie?color=a1b858&label=)](https://www.npmjs.com/package/craie)
 
 <h3 align="center">
-  Output colorful logs, much like <a href="https://github.com/chalk/chalk">chalk</a> but works for the browser.
+ 🎨 Output colorful logs, much like <a href="https://github.com/chalk/chalk">chalk</a> but works for the browser.
 </h3>
 
 <p align="center">
