@@ -3,6 +3,8 @@ import { Pair, Output, ExpandColor, ExpandRound, LogType, InferStyle, InferLog }
 const modifier = {
   bold: 'font-weight:bold;',
   italic: 'font-style:italic;',
+  underline: 'text-decoration:underline;',
+  strikethrough: 'text-decoration:line-through;'
 }
 
 const color = {
