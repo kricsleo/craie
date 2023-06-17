@@ -1,4 +1,4 @@
-<h1 align="center">🎨 craie</h1>
+<h1 align="center">🧶 craie</h1>
 <p align="center">
 <a href="https://www.npmjs.com/package/craie">
   <img src="https://img.shields.io/npm/v/craie?style=flat&colorA=18181B&colorB=F0DB4F" />
@@ -32,7 +32,7 @@
 ## Features
 
 - 🚀 Tiny < 1kB
-- 💪🏻 Full typescript support
+- 💪🏻  Full typescript support
 - 📦 No dependencies
 - 🪢 Elegant chain calls
 
