@@ -1,18 +1,40 @@
-# craie
+<h1 align="center">🎨 craie</h1>
+<p align="center">
+<a href="https://www.npmjs.com/package/craie">
+  <img src="https://img.shields.io/npm/v/craie?style=flat&colorA=18181B&colorB=F0DB4F" />
+</a>
 
-[![NPM version](https://badgen.net/npm/v/craie)](https://www.npmjs.com/package/craie)
-[![min + zip](https://badgen.net/bundlephobia/minzip/craie)](https://bundlephobia.com/package/craie)
-[![types](https://badgen.net/npm/types/craie)](https://www.npmjs.com/package/craie)
-[![tree sharking](https://badgen.net/bundlephobia/tree-shaking/craie)](https://bundlephobia.com/package/craie)
-[![dependency count](https://badgen.net/bundlephobia/dependency-count/craie)](https://bundlephobia.com/package/craie)
-<h2 align="center">
- 🎨 Output colorful logs, much like <a href="https://github.com/chalk/chalk">chalk</a> but works for the browser.
-</h2>
+<a href="https://www.npmjs.com/package/craie">
+  <img src="https://img.shields.io/npm/types/craie?style=flat&colorA=18181B&colorB=F0DB4F" />
+</a>
+
+<a href="https://bundlephobia.com/package/craie">
+  <img src="https://img.shields.io/bundlephobia/minzip/craie?style=flat&colorA=18181B&colorB=F0DB4F" />
+</a>
+
+<a href="https://github.com/kricsleo/craie/blob/master/LICENSE">
+  <img src="https://img.shields.io/github/license/kricsleo/craie.svg?style=flat&colorA=18181B&colorB=F0DB4F" />
+</a>
+
+</p>
+<h3 align="center">
+  Output colorful logs, much like <a href="https://github.com/chalk/chalk">chalk</a> but works for the browser.
+</h3>
+
+<br >
 
 <p align="center">
-  <img src="./screenshots/preview.png" alt="preview" />
+  <img src="./screenshots/preview.png" alt="preview" style="border-radius: 4px;" />
 </p>
 
+<br >
+
+## Features
+
+- 🚀 Tiny < 1kB
+- 💪🏻 Full typescript support
+- 📦 No dependencies
+- 🪢 Elegant chain calls
 
 ## Usage
 
