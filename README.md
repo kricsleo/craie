@@ -38,6 +38,10 @@
 
 ## Usage
 
+```bash
+npm i craie
+```
+
 ```ts
 import craie from 'craie'
 
