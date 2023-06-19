@@ -27,8 +27,6 @@
   <img src="./screenshots/preview.png" alt="preview" style="border-radius: 4px;" />
 </p>
 
-<br >
-
 ## Features
 
 - 🚀 Tiny < 1kB
@@ -38,6 +36,8 @@
 
 ## Usage
 
+### NPM
+
 ```bash
 npm i craie
 ```
@@ -46,6 +46,22 @@ npm i craie
 import craie from 'craie'
 
 craie.log(craie.blue.bgRed.round('Message'))
+```
+
+### CDN
+
+```html
+<script src="
+  https://cdn.jsdelivr.net/npm/craie/dist/index.global.min.js
+"></script>
+```
+
+Or try it now!
+
+Execute the script below on browser address bar, then use the global `craie` as you want.
+
+```js
+javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/craie/dist/index.global.min.js"; document.body.appendChild(script); })();
 ```
 
 ## License
