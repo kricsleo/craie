@@ -18,28 +18,26 @@
 
 </p>
 <h3 align="center">
-  Output colorful logs, much like <a href="https://github.com/chalk/chalk">chalk</a> but works for the browser.
+  Output colorful logs in the browser console.
 </h3>
 
 <br >
 
 <p align="center">
-  <img src="./screenshots/preview.png" alt="preview" style="border-radius: 4px;" />
+  <img src="./screenshots/preview.png" alt="preview" />
 </p>
 
 ## Features
 
 - 🚀 Tiny < 1kB
-- 💪🏻  Full typescript support
+- 💪🏻 Full typescript support
 - 📦 No dependencies
 - 🪢 Elegant chain calls
 
 ## Usage
 
-### NPM
-
 ```bash
-npm i craie
+npm install craie
 ```
 
 ```ts
@@ -48,22 +46,8 @@ import craie from 'craie'
 craie.log(craie.blue.bgRed.round('Message'))
 ```
 
-### CDN
-
-```html
-<script src="
-  https://cdn.jsdelivr.net/npm/craie/dist/index.global.min.js
-"></script>
-```
-
-Or try it now!
-
-Execute the script below on browser address bar, then use the global `craie` as you want.
-
-```js
-javascript:(function () { var script = document.createElement('script'); script.src="https://cdn.jsdelivr.net/npm/craie/dist/index.global.min.js"; document.body.appendChild(script); })();
-```
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/vitejs-vite-dplvtepa?file=src%2Fmain.js,index.html&terminal=dev)
 
 ## License
 
-[MIT](./LICENSE) License © 2023 [Kricsleo](https://github.com/kricsleo)
+❤️ [MIT](./LICENSE) © [Kricsleo](https://github.com/kricsleo)
