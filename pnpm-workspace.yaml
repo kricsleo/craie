@@ -1,4 +1,0 @@
-packages:
-  - playground
-onlyBuiltDependencies:
-  - esbuild

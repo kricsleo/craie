@@ -1,13 +1,20 @@
-import { Pair, Output, ExpandColor, ExpandRound, LogType, InferStyle, InferLog } from './types'
+import type {
+  ExpandColors,
+  ExpandRounds,
+  InferLogs,
+  InferStyles,
+  LogType,
+  Output,
+} from './types'
 
-const modifier = {
+const modifiers = {
   bold: 'font-weight:bold;',
   italic: 'font-style:italic;',
   underline: 'text-decoration:underline;',
-  strikethrough: 'text-decoration:line-through;'
+  strikethrough: 'text-decoration:line-through;',
 }
 
-const color = {
+const colors = {
   black: '#000',
   white: '#fff',
   rose: '#fb7185',
@@ -36,115 +43,79 @@ const color = {
   dark: '#222222',
 }
 
-const round = {
+const rounds = {
   round: '0.2em',
-  roundFull: '999em'
+  roundFull: '999em',
 }
+
+const styles = {
+  ...modifiers,
+  ...expandColors(colors),
+  ...expandRounds(rounds),
+}
+
+type Styles = typeof modifiers
+  & ExpandColors<typeof colors>
+  & ExpandRounds<typeof rounds>
 
 const logs: LogType[] = ['info', 'log', 'warn', 'error']
 
-const styles = {
-  ...modifier,
-  ...expandColor(color),
-  ...expandRound(round),
-};
+type Craie = InferStyles<Styles> & InferLogs<typeof logs>
 
-type StyleMap = typeof modifier & ExpandColor<typeof color> & ExpandRound<typeof round>
-
-type Craie = InferStyle<StyleMap> & InferLog<typeof logs>
-
-const craie: Craie = buildCraie(styles);
+const craie: Craie = buildCraie(styles)
 
 export default craie
 
-function buildCraie(styleMap: Pair): Craie {
+function buildCraie(styleMap: Record<string, any>): Craie {
   let cachedStyle = ''
+
   const craie: any = (message: string) => {
     const style = cachedStyle
     cachedStyle = ''
     return [`%c${message}`, style]
   }
+
   Object.entries(styleMap).forEach(([alias, style]) => {
     Object.defineProperty(craie, alias, {
       get() {
         cachedStyle += style
         return craie
-      }
+      },
     })
   })
+
   logs.forEach(logType => craie[logType] = createLogger(logType))
-  return craie as Craie;
+
+  return craie
 }
 
-function expandColor<T extends Pair>(styleMap: T): ExpandColor<T> {
-  return Object.entries(styleMap).reduce((all, [alias, color]) => {
-    all[alias] = `color:${color};`;
-    const bgName = 'bg' + alias[0].toUpperCase() + alias.slice(1);
-    all[bgName] = `background-color:${color};padding:0 0.5em;`;
-    return all;
-  }, {} as any);
+function expandColors<T extends Record<string, string>>(styles: T): ExpandColors<T> {
+  return Object.entries(styles).reduce<any>((all, [alias, color]) => {
+    all[alias] = `color:${color};`
+    const bgName = `bg${alias[0]!.toUpperCase()}${alias.slice(1)}`
+    all[bgName] = `background-color:${color};padding:0 0.5em;`
+    return all
+  }, {})
 }
 
-function expandRound<T extends Pair>(styleMap: T): ExpandRound<T> {
-  return Object.entries(styleMap).reduce((all, [alias, radius]) => {
-    all[alias] = `border-radius:${radius};`;
-    all[
-      alias + 'L'
-    ] = `border-top-left-radius:${radius};border-bottom-left-radius:${radius};`;
-    all[
-      alias + 'R'
-    ] = `border-top-right-radius:${radius};border-bottom-right-radius:${radius};`;
-    return all;
-  }, {} as any);
+function expandRounds<T extends Record<string, string>>(styles: T): ExpandRounds<T> {
+  return Object.entries(styles).reduce((all, [alias, radius]) => {
+    all[alias] = `border-radius:${radius};`
+    all[`${alias}L`] = `border-top-left-radius:${radius};border-bottom-left-radius:${radius};`
+    all[`${alias}R`] = `border-top-right-radius:${radius};border-bottom-right-radius:${radius};`
+    return all
+  }, {} as any)
 }
 
 function createLogger(logType: LogType) {
-  return function(...outputs: Output[]) {
+  return function (...outputs: Output[]) {
     let text = ''
     const styles: string[] = []
-    outputs.forEach(output => {
+    outputs.forEach((output) => {
       text += output[0]
       styles.push(output[1])
     })
+    // eslint-disable-next-line no-console
     console[logType](text, ...styles)
   }
 }
-
-// for previe only
-// ouputPreview()
-
-// function ouputPreview() {
-//   outputFrontColor()
-//   outputBackgroundColor()
-//   outputRound()
-//   outputModifer()
-// }
-
-// function outputFrontColor() {
-//   const expandedColor = expandColor(color)
-//   const frontColors = Object.keys(expandedColor).filter(color => !color.startsWith('bg'))
-//   // @ts-ignore
-//   const outputs = frontColors.map(alias => craie[alias](` ${alias} `))
-//   craie.log(...outputs)
-// }
-
-// function outputBackgroundColor() {
-//   const expandedColor = expandColor(color)
-//   const backgroundColors = Object.keys(expandedColor).filter(color => color.startsWith('bg'))
-//   // @ts-ignore
-//   const outputs = backgroundColors.map(alias => craie[alias](` ${alias} `))
-//   craie.log(...outputs)
-// }
-
-// function outputRound() {
-//   const rounds = expandRound(round)
-//   // @ts-ignore
-//   const outputs = Object.keys(rounds).map(alias => craie.bgRed.white[alias](` ${alias} `))
-//   craie.log(...outputs)
-// }
-
-// function outputModifer() {
-//   // @ts-ignore
-//   const outputs = Object.keys(modifier).map(alias => craie.bgRed.white[alias](` ${alias} `))
-//   craie.log(...outputs)
-// }
