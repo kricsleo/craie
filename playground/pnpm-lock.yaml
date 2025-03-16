@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-dependencies:
-  craie:
-    specifier: ^1.0.0
-    version: 1.0.0
-
 devDependencies:
   vite:
     specifier: ^6.2.2
@@ -396,10 +391,6 @@ packages:
   /@types/estree@1.0.6:
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
     dev: true
-
-  /craie@1.0.0:
-    resolution: {integrity: sha512-6eZYyKqQqDjQbp6xo3W2N2Rtlvzz2Wna5rYyeFro1hSnYAjijwGpd5mgo6EnF8lXkv0+Sr/O9rTnnUoi+UuvSA==}
-    dev: false
 
   /esbuild@0.25.1:
     resolution: {integrity: sha512-BGO5LtrGC7vxnqucAe/rmvKdJllfGaYWdyABvyMoXQlfYMb2bbRuReWR5tEGE//4LcNJj9XrkovTqNYRFZHAMQ==}

@@ -3,9 +3,6 @@
   "scripts": {
     "dev": "vite --open"
   },
-  "dependencies": {
-    "craie": "workspace:*"
-  },
   "devDependencies": {
     "vite": "^6.2.2"
   }
