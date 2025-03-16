@@ -66,7 +66,7 @@ const craie: Craie = buildCraie(styles)
 
 export default craie
 
-function buildCraie(styleMap: Record<string, any>): Craie {
+function buildCraie(styles: Record<string, any>): Craie {
   let cachedStyle = ''
 
   const craie: any = (message: string) => {
@@ -75,8 +75,9 @@ function buildCraie(styleMap: Record<string, any>): Craie {
     return [`%c${message}`, style]
   }
 
-  Object.entries(styleMap).forEach(([alias, style]) => {
+  Object.entries(styles).forEach(([alias, style]) => {
     Object.defineProperty(craie, alias, {
+      enumerable: true,
       get() {
         cachedStyle += style
         return craie
