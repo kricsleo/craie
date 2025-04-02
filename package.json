@@ -2,7 +2,7 @@
   "name": "craie",
   "type": "module",
   "version": "1.0.1",
-  "packageManager": "pnpm@10.7.0",
+  "packageManager": "pnpm@10.7.1",
   "description": "Output colorful logs in the browser console.",
   "author": "Kricsleo <kricsleo@163.com>",
   "license": "MIT",
