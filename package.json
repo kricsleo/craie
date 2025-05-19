@@ -44,7 +44,8 @@
     "release": "bumpp && npm publish",
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^4.13.1",
