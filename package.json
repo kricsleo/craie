@@ -48,7 +48,7 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.16.2",
+    "@antfu/eslint-config": "^4.17.0",
     "bumpp": "^10.2.0",
     "eslint": "^9.31.0",
     "typescript": "^5.8.3",
