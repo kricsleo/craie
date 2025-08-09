@@ -2,7 +2,7 @@
   "name": "craie",
   "type": "module",
   "version": "1.0.1",
-  "packageManager": "pnpm@10.13.1",
+  "packageManager": "pnpm@10.14.0",
   "description": "Output colorful logs in the browser console.",
   "author": "Kricsleo <kricsleo@163.com>",
   "license": "MIT",
@@ -48,11 +48,11 @@
     "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^4.17.0",
-    "bumpp": "^10.2.0",
-    "eslint": "^9.31.0",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.5.0",
+    "@antfu/eslint-config": "^5.2.0",
+    "bumpp": "^10.2.2",
+    "eslint": "^9.33.0",
+    "typescript": "^5.9.2",
+    "unbuild": "^3.6.0",
     "vitest": "^3.2.4"
   }
 }
