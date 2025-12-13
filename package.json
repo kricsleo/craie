@@ -25,22 +25,14 @@
       "require": "./dist/index.cjs"
     }
   },
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
+  "types": "./dist/index.d.mts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "tsdown",
     "release": "bumpp && npm publish",
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
@@ -52,8 +44,9 @@
     "@total-typescript/tsconfig": "^1.0.4",
     "bumpp": "^10.3.2",
     "eslint": "^9.39.1",
+    "publint": "^0.3.16",
+    "tsdown": "^0.17.3",
     "typescript": "^5.9.3",
-    "unbuild": "^3.6.1",
     "vitest": "^4.0.14"
   }
 }
